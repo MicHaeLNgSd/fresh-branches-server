@@ -1,0 +1,24 @@
+{
+  "name": "fresh-branches-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicHaeLNgSd/fresh-branches-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MicHaeLNgSd/fresh-branches-server/issues"
+  },
+  "homepage": "https://github.com/MicHaeLNgSd/fresh-branches-server#readme"
+}
