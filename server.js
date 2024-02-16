@@ -1,6 +1,7 @@
 const express = require('express');
-const app = express();
+//const yup = require('yup');
 
+const app = express();
 const PORT = 3000;
 const HOST = 'localhost';
 
@@ -24,6 +25,17 @@ app.get('/users', (req, res) => {
 });
 app.get('*', (req, res) => {
   res.send('NOT FOUND');
+});
+
+/*
+  -get data
+  -check data
+  -save data (and to DB)
+  -make user session
+  -send to client
+*/
+app.post('/users', express.json(), (req, res, next) => {
+  console.log(req.body);
 });
 
 app.listen(PORT, HOST, () => {

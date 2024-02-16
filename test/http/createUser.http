@@ -1,4 +1,4 @@
 POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
-{"email":"user@gmail.com", "password": "12345pass"}
+{"email":"user@gmail.com", "password": "12345pass", "gender": "helicopter"}
