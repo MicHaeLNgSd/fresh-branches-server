@@ -1,11 +1,10 @@
 const express = require('express');
-const yup = require('yup');
+const { validateRegistrationMW } = require('./middlewares/user.mw');
+const { getUsers, createUser } = require('./controllers/userController');
 
 const app = express();
 const PORT = 3000;
 const HOST = 'localhost';
-
-const users = [{ id: 1 }, { id: 2 }];
 
 app.get(
   '/',
@@ -20,9 +19,7 @@ app.get(
     res.send('HOME');
   }
 );
-app.get('/users', (req, res) => {
-  res.send(users);
-});
+app.get('/users', getUsers);
 app.get('*', (req, res) => {
   res.send('NOT FOUND');
 });
@@ -35,36 +32,7 @@ app.get('*', (req, res) => {
   -send to client
 */
 
-const REGISTRATION_SCHEMA = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).max(16).required(),
-  gender: yup.string(),
-});
-
-app.post(
-  '/users',
-  express.json(),
-  (req, res, next) => {
-    console.log(req.body);
-    // validate coz async
-    REGISTRATION_SCHEMA.validate(req.body)
-      .then((validatedUser) => {
-        res.user = validatedUser;
-        next();
-      })
-      .catch((err) => {
-        res.send(err.message);
-      });
-  },
-  (req, res, next) => {
-    const newUser = req.user;
-    newUser.id = users.length;
-    newUser.createdAt = new Date();
-
-    users.push(newUser);
-    res.send(newUser);
-  }
-);
+app.post('/users', express.json(), validateRegistrationMW, createUser);
 
 app.listen(PORT, HOST, () => {
   console.log(`Server started on ${HOST}:${PORT}`);
