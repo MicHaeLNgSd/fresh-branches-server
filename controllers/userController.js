@@ -15,3 +15,15 @@ module.exports.getUser = async (req, res) => {
   const user = await User.findOne(Number(id));
   res.send(user);
 };
+
+module.exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
+  const deletedUser = await User.delete(Number(id));
+  res.send(deletedUser);
+};
+
+module.exports.updateUser = async (req, res) => {
+  const { id } = req.params;
+  const deletedUser = await User.delete(Number(id));
+  res.send(deletedUser);
+};
