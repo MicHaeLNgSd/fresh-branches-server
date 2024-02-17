@@ -1,6 +1,6 @@
 const express = require('express');
 const { validateRegistrationMW } = require('./middlewares/user.mw');
-const { getUsers, createUser } = require('./controllers/userController');
+const { getUsers, createUser, getUser } = require('./controllers/userController');
 
 const app = express();
 const PORT = 3000;
@@ -20,6 +20,7 @@ app.get(
   }
 );
 app.get('/users', getUsers);
+app.get('/users/:id', getUser);
 app.get('*', (req, res) => {
   res.send('NOT FOUND');
 });

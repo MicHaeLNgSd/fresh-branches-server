@@ -1,4 +1,4 @@
-let users = [{ id: 1 }];
+let users = [{ id: 1, email: 'test@test.test' }];
 
 class User {
   static async create(newData) {
