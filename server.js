@@ -22,6 +22,7 @@ const HOST = 'localhost';
 //   res.send('NOT FOUND');
 // });
 
+app.use(express.json());
 app.use('/users', userRouter);
 
 app.listen(PORT, HOST, () => {

@@ -16,12 +16,10 @@ const {
   -make user session
   -send to client
 */
-
-const bodyParserMW = express.json();
 router.get('/', getUsers);
 router.get('/:id', getUser);
 router.delete('/:id', deleteUser);
-router.put('/:id', bodyParserMW, updateUser);
-router.post('/', bodyParserMW, validateRegistrationMW, createUser);
+router.put('/:id', updateUser);
+router.post('/', validateRegistrationMW, createUser);
 
 module.exports = router;
