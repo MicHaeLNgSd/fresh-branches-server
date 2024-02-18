@@ -1,14 +1,14 @@
 const express = require('express');
-const router = express.Router();
 const { validateRegistrationMW } = require('../middlewares/user.mw');
 const {
   getUsers,
-  createUser,
-  getUser,
   deleteUser,
   updateUser,
+  createUser,
+  getUser,
 } = require('../controllers/userController');
 
+const userRouter = express.Router();
 /*
   -get data //express.json()
   -check data //yup
@@ -16,10 +16,11 @@ const {
   -make user session
   -send to client
 */
-router.get('/', getUsers);
-router.get('/:id', getUser);
-router.delete('/:id', deleteUser);
-router.put('/:id', updateUser);
-router.post('/', validateRegistrationMW, createUser);
 
-module.exports = router;
+userRouter.get('/', getUsers);
+userRouter.get('/:userId', getUser);
+userRouter.delete('/:userId', deleteUser);
+userRouter.put('/:userId', updateUser);
+userRouter.post('/', validateRegistrationMW, createUser);
+
+module.exports = userRouter;

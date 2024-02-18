@@ -1,5 +1,5 @@
 const express = require('express');
-const userRouter = require('./routers/users');
+const router = require('./routers');
 
 const app = express();
 const PORT = 3000;
@@ -23,7 +23,9 @@ const HOST = 'localhost';
 // });
 
 app.use(express.json());
-app.use('/users', userRouter);
+
+// app.use('/api', router);
+app.use(router);
 
 app.listen(PORT, HOST, () => {
   console.log(`Server started on ${HOST}:${PORT}`);
