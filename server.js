@@ -25,10 +25,16 @@ app.get(
     res.send('HOME');
   }
 );
+
+const bodyParserMW = express.json();
+
 app.get('/users', getUsers);
+app.post('/users', bodyParserMW, validateRegistrationMW, createUser);
+
 app.get('/users/:id', getUser);
 app.delete('/users/:id', deleteUser);
-app.put('/users/:id', updateUser);
+app.put('/users/:id', bodyParserMW, updateUser);
+
 app.get('*', (req, res) => {
   res.send('NOT FOUND');
 });
@@ -40,8 +46,6 @@ app.get('*', (req, res) => {
   -make user session
   -send to client
 */
-
-app.post('/users', express.json(), validateRegistrationMW, createUser);
 
 app.listen(PORT, HOST, () => {
   console.log(`Server started on ${HOST}:${PORT}`);

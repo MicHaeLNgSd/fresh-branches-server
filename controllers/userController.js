@@ -22,8 +22,11 @@ module.exports.deleteUser = async (req, res) => {
   res.send(deletedUser);
 };
 
-module.exports.updateUser = async (req, res) => {
-  const { id } = req.params;
-  const deletedUser = await User.delete(Number(id));
-  res.send(deletedUser);
+module.exports.updateUser = async (req, res, next) => {
+  const {
+    params: { id },
+    body,
+  } = req;
+  const updatedUser = await User.update(Number(id), body);
+  res.send(updatedUser);
 };
