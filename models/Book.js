@@ -34,8 +34,9 @@ class Book {
   }
 
   static async delete(id) {
-    books = books.filter(b.id !== id);
-    return await Book.getOne(id);
+    const deletedBook = await Book.getOne(id);
+    books = books.filter((b) => b.id !== id);
+    return deletedBook;
   }
 }
 
